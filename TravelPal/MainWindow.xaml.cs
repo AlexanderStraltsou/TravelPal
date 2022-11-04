@@ -22,53 +22,83 @@ namespace TravelPal
     /// </summary>
     public partial class MainWindow : Window
     {
-        private UserManager userManager = new();
+        private UserManager userManager;
+        private TravelManager travelManager;
 
         public MainWindow()
         {
             InitializeComponent();
+            this.userManager = new();
+            this.travelManager = new();
+
+            foreach(IUser user in userManager.GetAllUsers())
+            {
+                if(user is User)
+                {
+                    User u = user as User;
+
+                    travelManager.travels.AddRange(u.Travels);
+                }
+            }
         }
+
+        public MainWindow(UserManager userManager, TravelManager travelManager)
+        {
+            InitializeComponent();
+            this.userManager = userManager;
+            this.travelManager = travelManager;
+            
+        }
+
+        // Register/Save user and close register window
 
         private void btnRegister_Click(object sender, RoutedEventArgs e)
         {
-            RegisterWindow registerWindow = new(userManager);
+
+
+            RegisterWindow registerWindow = new(userManager, travelManager);
 
             registerWindow.Show();
+
+            this.Close();
+
         }
+
+
+        //Sign in as a user, close login/main window and open travelsWindow. Show warning if something isn't right
 
         private void btnSignIn_Click(object sender, RoutedEventArgs e)
         {
-            List<User> users = userManager.GetAllUsers();
+            List<IUser> users = userManager.GetAllUsers();
 
             string username = txtUsername.Text;
             string password = pswPassword.Password;
 
             bool isFoundUser = false;
 
-            foreach (User user in users)
+            foreach (IUser user in users)
             {
                 if (user.Username == username && user.Password == password)
                 {
                     
                     isFoundUser = true;
+                    userManager.SignedInUser = user;
 
-                    /*if (user is Client)
-                    {
-                        AccountsWindow accountsWindow = new(userManager, user);
-                        accountsWindow.Show();
-                    }
-                    else if (user is Admin)
-                    {
-                        AdminWindow adminWindow = new(userManager, user);
-                        adminWindow.Show();
-                    }*/
+                    TravelsWindow travelsWindow = new(userManager, travelManager);
+
+                    travelsWindow.Show();
+
+                    Close();
+                    
                 }
             }
 
             if (!isFoundUser)
             {
-                MessageBox.Show("Username or password is incorrect", "Warning");
+                MessageBox.Show("User doesn't exist or username/password is incorrect", "Warning");
             }
         }
     }
+
+    
 }

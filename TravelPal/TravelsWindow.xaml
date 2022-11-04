@@ -23,26 +23,28 @@
         </Grid.RowDefinitions>
 
         <Label 
+            x:Name="lblUsername"
             Grid.Column="4"
             Grid.Row="0"
             Grid.ColumnSpan="2"
-            Content="Alexander"
             FontSize="13"
             FontWeight="Bold"
             HorizontalContentAlignment="Center"
             VerticalAlignment="Top"/>
         <ListView
-            x:Name="lvPlayers"
+            x:Name="lvTravel"
             Grid.Column="0"
             Grid.Row="0"
             Grid.RowSpan="4"
-            Grid.ColumnSpan="2"
+            Grid.ColumnSpan="3"
             FontSize="14"
             Margin="20"
             Background="MintCream"
             HorizontalContentAlignment="Left"
             BorderThickness="0" 
-            SelectionChanged="lvPlayers_SelectionChanged"/>
+            SelectionChanged="lvTravel_SelectionChanged" 
+            />
+        <!--SelectionChanged="lvTravel_SelectionChanged"-->
         <Button
             x:Name="btnRemove"
             Grid.Column="2"
@@ -52,32 +54,42 @@
             FontSize="20"
             FontWeight="Bold"
             IsEnabled="false" 
-            Background="MintCream"
-            Click="btnRemove_Click"/>
+            Background="MintCream" 
+            Click="btnRemove_Click"
+            />
+        
+        
         <Button
-            x:Name="btnAdd"
+            x:Name="btnAddTravel"
             Grid.Column="1"
             Grid.Row="4"
             Content="Add Travel"
             Margin="20"
             FontSize="20"
             FontWeight="Bold" 
-            Background="MintCream"
-            Click="btnAdd_Click"/>
+            Background="MintCream" 
+            Click="btnAddTravel_Click" 
+            
+            />
+        
 
         <Button
-           
+            x:Name="btnDetails"
             Grid.Column="0"
             Grid.Row="4"
             Content="Details"
+            IsEnabled="false" 
             Background="MintCream"
             Margin="20"
             FontSize="20"
             FontWeight="Bold" 
-            Click="btnAdd_Click"/>
+            Click="btnDetails_Click" 
+            />
+
+        
 
         <Button
-            
+            x:Name="btnUserDetails"
             Grid.Column="3"
             Grid.Row="0"
             Content="User"
@@ -85,10 +97,14 @@
             Margin="20"
             FontSize="20"
             FontWeight="Bold" 
-            Click="btnAdd_Click"/>
+            Click="btnUserDetails_Click" 
+             
+            
+            />
+        
 
         <Button
-            
+            x:Name="btnSignOut"
             Grid.Column="4"
             Grid.Row="0"
             Content="Sign Out"
@@ -96,19 +112,27 @@
             Margin="20"
             FontSize="20"
             FontWeight="Bold" 
-            Click="btnAdd_Click"/>
+            Click="btnSignOut_Click" 
+            
+            />
+
+        
 
         <Button 
-                ToolTip="Visit our website www.travelpal.com for more info about our company" 
-                Click="SubmitCode" 
+                x:Name="btnAppInfo"
+                ToolTip="Learn more about us" 
                 Height="20" 
                 Width="50"
                 Grid.Column="4"
                 Background="MintCream"
-                Grid.Row="4"
+                Grid.Row="4" 
+                Click="btnAppInfo_Click" 
+                
                 >App Info
 
         </Button>
+
+        
 
     </Grid>
 </Window>

@@ -5,15 +5,23 @@ using System.Text;
 using System.Threading.Tasks;
 using TravelPal.Enums;
 
-//namespace TravelPal.Models
-//{
-//    public class Trip : Travel
-//    {
+namespace TravelPal.Models
+{
+    public class Trip : Travel
+    {
 
-//        public TripTypes type { get; set; }
-//        public string GetInfo()
-//        {
-//            return
-//        }
-//    }
-//}
+        public TripTypes Type { get; set; }
+
+        public Trip(string destination, int travellers, Countries country, TripTypes tripType) : base(destination, travellers, country)
+        {
+            Type = tripType;
+        }
+
+
+        //Send short info to the listView
+        public override string GetInfo()
+        {
+            return $"{base.destination} / {base.travellers} / {base.country}";
+        }
+    }
+}

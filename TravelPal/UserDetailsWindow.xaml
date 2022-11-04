@@ -1,11 +1,11 @@
-﻿<Window x:Class="TravelPal.RegisterWindow"
+﻿<Window x:Class="TravelPal.UserDetailsWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TravelPal"
         mc:Ignorable="d"
-        Title="RegisterWindow" Height="450" Width="800">
+        Title="UserDetailsWindow" Height="450" Width="800">
     <Grid Margin="20" Background="MediumSlateBlue">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
@@ -27,20 +27,20 @@
         <Label 
             Grid.Row="1"
             Grid.Column="2"
-            Content="Username"
+            Content="New Username"
             VerticalAlignment="Center"
             Foreground="White"/>
         <Label 
             Grid.Row="2"
             Grid.Column="2"
-            Content="Password"
+            Content="New Password"
             VerticalAlignment="Center"
             Foreground="White"/>
 
         <Label 
             Grid.Row="4"
             Grid.Column="2"
-            Content="Choose Your Country"
+            Content="Update Your Country"
             VerticalAlignment="Center"
             Foreground="White"/>
         <Label 
@@ -53,7 +53,7 @@
             Grid.Row="0"
             Grid.Column="2"
             Grid.ColumnSpan="2"
-            Content="Register"
+            Content="Update Details:"
             FontWeight="Bold"
             FontFamily="Arial"
             Foreground="White"
@@ -80,12 +80,23 @@
             Height="25"
             VerticalContentAlignment="Center"/>
         <Button
-            x:Name="btnRegister"
+            x:Name="btnSave"
             Grid.Row="5"
             Grid.Column="3"
-            Content="Register"
+            Content="Save"
             Height="25"
-            Margin="10 0" Click="btnRegister_Click"/>
+            Margin="10" Click="btnSave_Click" 
+            
+            />
+        <Button
+            x:Name="btnCancel"
+            Grid.Row="5"
+            Grid.Column="2"
+            Content="Cancel"
+            Height="25"
+            Margin="10" Click="btnCancel_Click" 
+            
+            />
 
         <ComboBox 
 
@@ -94,6 +105,6 @@
         Grid.Row="4"
         Height="25"
         VerticalAlignment="Center"/>
-        
+
     </Grid>
 </Window>
