@@ -31,14 +31,20 @@ namespace TravelPal
             this.userManager = userManager;
             this.travelManager = travelManager;
 
-            if(userManager.SignedInUser is Admin)
+            
+
+
+            if (userManager.SignedInUser is Admin)
             {
                 travels = travelManager.GetTravels();
             }
             else if (userManager.SignedInUser is User)
             {
+                
                 User signedInUser = userManager.SignedInUser as User;
                 travels = signedInUser.Travels;
+                
+                
             }
 
             foreach (Travel travel in travels)
@@ -50,7 +56,9 @@ namespace TravelPal
 
                 lvTravel.Items.Add(item);
             }
-            
+
+            ShowUpdatedTravels();
+
 
             //Show the name of signed in user
 
@@ -129,18 +137,39 @@ namespace TravelPal
         private void ShowUpdatedTravels()
 
         {
+            lvTravel.Items.Clear();
+
             travels = travelManager.GetTravels();
 
-            foreach (Travel travel in travels)
+            if(userManager.SignedInUser is User)
             {
-                ListViewItem item = new();
+                foreach (Travel travel in travels)
+                {
+                    ListViewItem item = new();
 
 
-                item.Content = travel.GetInfo();
-                item.Tag = travel;
+                    item.Content = travel.GetInfo();
+                    item.Tag = travel;
 
-                lvTravel.Items.Add(item);
+                    lvTravel.Items.Add(item);
+                }
             }
+
+            else if (userManager.SignedInUser is Admin)
+            {
+                foreach (Travel travel in travelManager.travels)
+                {
+                    ListViewItem item = new();
+
+
+                    item.Content = travel.GetInfo();
+                    item.Tag = travel;
+
+                    lvTravel.Items.Add(item);
+                }
+            }
+
+
         }
 
         private void btnRemove_Click(object sender, RoutedEventArgs e)
@@ -160,7 +189,7 @@ namespace TravelPal
 
                 //Show Updated List of Travels
 
-                lvTravel.Items.Clear();
+                
                 ShowUpdatedTravels();
 
             }
@@ -168,7 +197,7 @@ namespace TravelPal
             {
                 MessageBox.Show("First select a travel");
             }
-
+            
         }
 
         //Buttons remove and details are hidden if travel is selected
